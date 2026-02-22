@@ -11,49 +11,42 @@
 3. SLA Colour = IF( \[Average Resolution Hours]> AVERAGE(Fact\_Orders\[SLA\_Hours]), "#C62828", "#2E7D32")
    
    ---
-4. ###### SLA Breach % =
+4. SLA Breach % =
 
-###### &nbsp;	DIVIDE(
+DIVIDE(
 
-###### &nbsp;   		COUNTROWS(
+COUNTROWS(
 
-###### &nbsp;       		FILTER(
+FILTER(
 
-###### &nbsp;           			Fact\_Orders,
+Fact_Orders, Fact_Orders[Resolution Hours] > Fact_Orders[SLA_Hours]
 
-###### &nbsp;           			Fact\_Orders\[Resolution Hours] > Fact\_Orders\[SLA\_Hours]
+)
 
-###### &nbsp;				)
+),
 
-###### &nbsp;   			),
+COUNTROWS(Fact_Orders)
 
-###### &nbsp;   			COUNTROWS(Fact\_Orders)
+)
 
-###### &nbsp;		)
+5. Profit Margin % = DIVIDE(\[Total Profit],\[Total Sales])
 
-###### 
+6. City Rank = 
 
-###### 5\. Profit Margin % = DIVIDE(\[Total Profit],\[Total Sales])
+RANKX(
 
-###### 
+ALL(Fact_Orders[City]),
 
-###### 6\. City Rank = 
+[Total Sales],
 
-###### &nbsp;	RANKX(
+,
 
-###### &nbsp;   		ALL(Fact\_Orders\[City]),
+DESC,
 
-###### &nbsp;   			\[Total Sales],
+DENSE
 
-###### &nbsp;  		 ,
+)
 
-###### &nbsp;   		DESC,
+7. Average Resolution Hours = AVERAGE(Fact\_Orders\[Resolution Hours])
 
-###### &nbsp;   		DENSE
-
-###### &nbsp;		)
-
-###### 
-
-###### 7\. Average Resolution Hours = AVERAGE(Fact\_Orders\[Resolution Hours])
 
