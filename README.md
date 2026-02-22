@@ -57,5 +57,11 @@ It provides a consolidated view to support data-driven decision-making for manag
 
   Profit Analysis
 
+
+# Author
+
+  Aishika Nandy
+  Power BI Enthusiast
+
   SLA Operations
 
