@@ -3,9 +3,26 @@
 
 
 1. ###### Total Sales = SUM(Fact\_Orders\[Sales])
+
 2. ###### Total Profit = SUM(Fact\_Orders\[Profit])
+
 3. ###### SLA Colour = IF( \[Average Resolution Hours]> AVERAGE(Fact\_Orders\[SLA\_Hours]), "#C62828", "#2E7D32")
+
 4. ###### SLA Breach % = DIVIDE(COUNTROWS(FILTER(Fact\_Orders, Fact\_Orders\[Resolution Hours] > Fact\_Orders\[SLA\_Hours])), COUNTROWS(Fact\_Orders)
+
 5. ###### Profit Margin % = DIVIDE(\[Total Profit], \[Total Sales])
-6. ###### City Rank =RANKX(ALL(Fact\_Orders\[City]), \[Total Sales], , DESC, DENSE)
+
+6. ###### City Rank = RANKX
+                      (
+                        ALL
+                        (
+                          Fact_Orders[City]
+                          ), 
+                          [Total Sales],
+                          ,
+                          DESC,
+                          DENSE
+                       )
+
 7. ###### Average Resolution Hours = AVERAGE(Fact\_Orders\[Resolution Hours])
+
